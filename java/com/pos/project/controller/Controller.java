@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pos.project.dtos.PedidoDto;
 import com.pos.project.dtos.PratoDto;
 import com.pos.project.model.Prato;
+import com.pos.project.services.PedidoServices;
 import com.pos.project.services.PratoServices;
 
 @RestController
@@ -17,6 +19,9 @@ public class Controller {
 
     @Autowired
     private PratoServices pratoServices;
+
+    @Autowired
+    private PedidoServices pedidoServices;
     
     @GetMapping("/")
     public String test(){
@@ -33,5 +38,11 @@ public class Controller {
     public Iterable<Prato> getPratos(){
         Iterable<Prato> pratos = pratoServices.getPratos();
         return pratos;
+    }
+
+    @PostMapping("/pedido")
+    public ResponseEntity newPedido(@RequestBody PedidoDto pedidoDto){
+        String response = pedidoServices.newPedido(pedidoDto);
+        return ResponseEntity.ok().body(response);
     }
 }
