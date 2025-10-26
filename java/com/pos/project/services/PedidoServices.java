@@ -35,6 +35,7 @@ public class PedidoServices {
 
             for(int i = 0; i < pedidoDto.getPratos().size(); i++){
                 prato = pratoRepository.findByNome(pedidoDto.getPratos().get(i));
+                pratosPedidos.setPrato_id(prato.getId());
                 pratosPedidos.setNome(prato.getNome());
                 pratosPedidos.setPreco(prato.getPreco());
                 preco_total = preco_total + prato.getPreco();
@@ -50,5 +51,9 @@ public class PedidoServices {
             System.out.println(e);
             return "Erro ao cadastrar pedido!";
         }
-    }    
+    } 
+
+    public Iterable<Pedido> getPedidos(){
+        return pedidoRepository.findAll();
+    }
 }

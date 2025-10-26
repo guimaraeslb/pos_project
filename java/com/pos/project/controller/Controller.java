@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pos.project.dtos.PedidoDto;
 import com.pos.project.dtos.PratoDto;
+import com.pos.project.model.Pedido;
 import com.pos.project.model.Prato;
 import com.pos.project.services.PedidoServices;
 import com.pos.project.services.PratoServices;
@@ -44,5 +45,10 @@ public class Controller {
     public ResponseEntity newPedido(@RequestBody PedidoDto pedidoDto){
         String response = pedidoServices.newPedido(pedidoDto);
         return ResponseEntity.ok().body(response);
+    }
+
+    @GetMapping("/pedidos")
+    public Iterable<Pedido> getAllPedidos(){
+        return pedidoServices.getPedidos();
     }
 }

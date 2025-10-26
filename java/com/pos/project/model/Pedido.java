@@ -9,7 +9,6 @@ import com.pos.project.dtos.PratosPedidos;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Embeddable;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -26,7 +25,7 @@ public class Pedido {
     private UUID id;
 
     @Column(nullable = false)
-    @Embedded
+    @ElementCollection
     private List<PratosPedidos> pratos_pedidos;
 
     @Column(nullable = false)
